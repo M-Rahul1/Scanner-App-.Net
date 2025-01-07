@@ -2,36 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App1.Views.ScanPage"
-             Title="Scan">
-    <StackLayout Padding="10">
-        <!-- Input Field -->
-        <Entry x:Name="IdEntry" Placeholder="Enter 16-digit ID" Keyboard="Numeric" MaxLength="16" />
+             Title="Scan Page">
 
-        <!-- QR Code Scanner Button -->
-        <Button Text="Scan QR Code" Clicked="OnScanQRCode" />
-
-        <!-- List of Scanned IDs -->
-        <ListView x:Name="IdListView">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <!-- Action Buttons -->
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-            <Button Text="Clear" Clicked="OnClear" />
-            <Button Text="Delete" Clicked="OnDelete" />
-        </StackLayout>
-
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-            <Button Text="Submit" Clicked="OnSubmit" />
-            <Button Text="Reload" Clicked="OnReload" />
-            <Button Text="Next" Clicked="OnNext" />
-        </StackLayout>
-
-        <!-- Count Label -->
-        <Label x:Name="CountLabel" Text="Count: 0" HorizontalOptions="Center" />
+    <StackLayout Padding="20" VerticalOptions="CenterAndExpand">
+        <Label Text="Welcome to Scan Page!"
+               HorizontalOptions="Center"
+               FontSize="Large" />
     </StackLayout>
 </ContentPage>
