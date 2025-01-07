@@ -34,10 +34,10 @@
         <ShellContent Title="Scan" 
                       Icon="icon_scan.png"
                       ContentTemplate="{DataTemplate local:ScanPage}" />
-        <ShellContent Title="Details" 
-              Icon="icon_scan.png"
-              ContentTemplate="{DataTemplate local:DetailsPage}" />
-        <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
+        <!--
+            <ShellContent Title="Details" ContentTemplate="{DataTemplate local:DetailsPage}" />
+        -->
+            <ShellContent Title="Browse" Icon="icon_feed.png" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </TabBar>
 
     <!--
