@@ -14,7 +14,14 @@ namespace App1
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            MainPage = new TabbedPage
+            {
+                Children =
+                {
+                    new NavigationPage(new ScanPage()) { Title = "Scan" },
+                    new NavigationPage(new DetailsPage()) { Title = "Details" }
+                }
+            };
         }
 
         protected override void OnStart()

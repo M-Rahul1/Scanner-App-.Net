@@ -2,16 +2,56 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App1.Views.ScanPage"
-             Title="Scan">
-    <StackLayout Padding="10">
-        <!-- Entry Field for 16-digit ID -->
-        <Entry x:Name="IdEntry" Placeholder="Enter 16-digit ID" Keyboard="Numeric" MaxLength="16" />
+             Title="Scanning App">
+    <StackLayout Padding="10" Spacing="10" BackgroundColor="White">
 
-        <!-- Button to Simulate QR Code Scanning -->
-        <Button Text="Scan QR Code" Clicked="OnScanQRCode" />
+        <!-- Top Navigation Tabs -->
+        <Grid Padding="5" BackgroundColor="#2C6B8E">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Scan"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    CornerRadius="0"
+                    FontAttributes="Bold"
+                    Grid.Column="0" />
+            <Button Text="Details"
+                    BackgroundColor="White"
+                    TextColor="Black"
+                    CornerRadius="0"
+                    FontAttributes="Bold"
+                    Grid.Column="1" />
+        </Grid>
 
-        <!-- ListView to Display Scanned IDs -->
-        <ListView x:Name="IdListView" HeightRequest="150">
+        <!-- Entry Field for 16-digit ID and QR Code Icon -->
+        <Grid Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+            <Entry x:Name="IdEntry"
+                   Placeholder="Enter 16-digit ID"
+                   Keyboard="Numeric"
+                   MaxLength="16"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center" />
+            <Button Text="📷"
+                    Clicked="OnScanQRCode"
+                    BackgroundColor="LightGray"
+                    BorderRadius="5"
+                    Grid.Column="1"
+                    WidthRequest="50"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center" />
+        </Grid>
+
+        <!-- ListView for Scanned IDs -->
+        <ListView x:Name="IdListView"
+                  HeightRequest="200"
+                  Margin="0,10,0,10"
+                  BackgroundColor="#E8F1F8">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding}" />
@@ -19,20 +59,62 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!-- Horizontal Buttons for Actions -->
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-            <Button Text="Clear" Clicked="OnClear" HorizontalOptions="FillAndExpand" />
-            <Button Text="Delete" Clicked="OnDelete" HorizontalOptions="FillAndExpand" />
+        <!-- Count Label -->
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="Center">
+            <Label x:Name="CountLabel"
+                   Text="4"
+                   FontAttributes="Bold"
+                   FontSize="10"
+                   BackgroundColor="White"
+                   WidthRequest="40"
+                   HeightRequest="40"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   TextColor="Black"
+                   
+                    />
         </StackLayout>
 
-        <!-- Action Buttons -->
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-            <Button Text="Submit" Clicked="OnSubmit" HorizontalOptions="FillAndExpand" />
-            <Button Text="Reload" Clicked="OnReload" HorizontalOptions="FillAndExpand" />
-            <Button Text="Next" Clicked="OnNext" HorizontalOptions="FillAndExpand" />
+        <!-- Buttons for Clear and Delete -->
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand">
+            <Button Text="Clear"
+                    TextColor="Black"
+                    Clicked="OnClear"
+                    BackgroundColor="White"
+                    BorderColor="#000000"
+                    BorderWidth="1"
+                    HorizontalOptions="FillAndExpand" />
+            <Button Text="Delete"
+                                        TextColor="Black"
+                    Clicked="OnDelete"
+                    BackgroundColor="White"
+                    BorderColor="#000000"
+                    BorderWidth="1"
+                    HorizontalOptions="FillAndExpand" />
         </StackLayout>
 
-        <!-- Label for Count -->
-        <Label x:Name="CountLabel" Text="Count: 0" HorizontalOptions="Center" FontSize="Medium" />
+        <!-- Buttons for Reload, Submit, and Next -->
+        <StackLayout Orientation="Horizontal" Spacing="10" HorizontalOptions="FillAndExpand">
+            <Button Text="Reload"
+                     TextColor="Black"
+                    Clicked="OnReload"
+                    BackgroundColor="White"
+                    BorderColor="#000000"
+                    BorderWidth="1"
+                    HorizontalOptions="FillAndExpand" />
+            <Button Text="Submit"
+                    Clicked="OnSubmit"
+                    BackgroundColor="#2C6B8E"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand" />
+            <Button Text="Next"
+                    Clicked="OnNext"
+                    BackgroundColor="#2C6B8E"
+                    TextColor="White"
+                    HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+
     </StackLayout>
 </ContentPage>

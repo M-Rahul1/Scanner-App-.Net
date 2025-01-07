@@ -1,12 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="App1.Views.Page1">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="App1.Views.DetailsPage"
+             Title="Details">
+    <StackLayout Padding="10">
+        <!-- ListView to Display Scanned IDs with Labels -->
+        <ListView x:Name="ScannedIdsListView" HeightRequest="400">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Vertical" Padding="5">
+                            <Label Text="Scanned ID:" FontAttributes="Bold" />
+                            <Label Text="{Binding Id}" FontSize="Medium" TextColor="Black" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Label for Count -->
+        <Label x:Name="DetailsCountLabel" Text="Count: 0" HorizontalOptions="Center" FontSize="Medium" />
+
+        <!-- Back Button -->
+        <Button Text="Back" Clicked="OnBack" HorizontalOptions="FillAndExpand" />
+    </StackLayout>
 </ContentPage>
