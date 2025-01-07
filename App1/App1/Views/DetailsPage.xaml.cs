@@ -46,10 +46,10 @@ namespace App1.Views
             await Navigation.PopAsync();
         }
 
-        protected override async void OnAppearing()
+        /*protected override async void OnAppearing()
         {
             base.OnAppearing();
             DetailsListView.ItemsSource = await App.Database.GetIdsAsync();
-        }
+        }*/
     }
 }
