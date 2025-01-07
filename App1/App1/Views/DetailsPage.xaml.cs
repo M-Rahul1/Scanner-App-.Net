@@ -19,13 +19,16 @@ namespace App1.Views
             InitializeDatabase();
         }
 
-        private async void InitializeDatabase()
+        private void InitializeDatabase()
         {
             string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ScannedIDs.db3");
             _database = new SQLiteAsyncConnection(dbPath);
+        }
 
-            // Load data
-            await LoadScannedItemsAsync();
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await LoadScannedItemsAsync(); // Refresh data when the page appears
         }
 
         private async Task LoadScannedItemsAsync()
@@ -45,11 +48,5 @@ namespace App1.Views
         {
             await Navigation.PopAsync();
         }
-
-        /*protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            DetailsListView.ItemsSource = await App.Database.GetIdsAsync();
-        }*/
     }
 }
