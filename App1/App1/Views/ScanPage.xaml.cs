@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 
 namespace App1.Views
@@ -15,18 +16,30 @@ namespace App1.Views
             UpdateCountLabel();
         }
 
-        // Simulate QR Code Scanning
+        // Handle QR Code Scanning
         private void OnScanQRCode(object sender, EventArgs e)
         {
-            var scannedId = $"ID-{DateTime.Now.Ticks % 10000000000000000:D16}"; // Generate a fake 16-digit ID
-            if (!_scannedIds.Contains(scannedId))
+            var scannedId = $"1234567890123456"; // Replace with actual QR code scanning logic
+            AddIdToList(scannedId);
+        }
+
+        // Add ID to List
+        private void AddIdToList(string id)
+        {
+            if (_scannedIds.Contains(id))
             {
-                _scannedIds.Add(scannedId);
+                DisplayAlert("Duplicate", "This ID is already scanned.", "OK");
+                return;
+            }
+
+            if (id.Length == 16 && long.TryParse(id, out _))
+            {
+                _scannedIds.Add(id);
                 UpdateCountLabel();
             }
             else
             {
-                DisplayAlert("Duplicate", "This ID is already scanned.", "OK");
+                DisplayAlert("Invalid", "Please enter a valid 16-digit ID.", "OK");
             }
         }
 
@@ -51,27 +64,35 @@ namespace App1.Views
             }
         }
 
-        // Submit IDs (Placeholder for Future Logic)
-        private void OnSubmit(object sender, EventArgs e)
+        // Submit IDs to Database
+        private async void OnSubmit(object sender, EventArgs e)
         {
-            DisplayAlert("Submit", "IDs submitted successfully!", "OK");
+            foreach (var id in _scannedIds)
+            {
+                await App.Database.SaveIdAsync(new ScannedId { Id = id });
+            }
+
+            DisplayAlert("Submitted", "Data saved successfully.", "OK");
             _scannedIds.Clear();
             UpdateCountLabel();
         }
 
-        // Reload IDs (Placeholder for Database Fetch)
-        private void OnReload(object sender, EventArgs e)
+        // Reload IDs from Database
+        private async void OnReload(object sender, EventArgs e)
         {
             _scannedIds.Clear();
-            _scannedIds.Add("1234567890123456");
-            _scannedIds.Add("6543210987654321");
+            var idsFromDb = await App.Database.GetIdsAsync();
+            foreach (var id in idsFromDb)
+            {
+                _scannedIds.Add(id.Id);
+            }
             UpdateCountLabel();
         }
 
-        // Navigate to the Next Page
-        private void OnNext(object sender, EventArgs e)
+        // Navigate to Details Page
+        private async void OnNext(object sender, EventArgs e)
         {
-            DisplayAlert("Next", "Navigating to the next page...", "OK");
+            await Shell.Current.GoToAsync("//DetailsPage");
         }
 
         // Update Count Label

@@ -4,14 +4,14 @@
              x:Class="App1.Views.ScanPage"
              Title="Scan">
     <StackLayout Padding="10">
-        <!-- Entry Field for 16-digit ID -->
+        <!-- Input Field -->
         <Entry x:Name="IdEntry" Placeholder="Enter 16-digit ID" Keyboard="Numeric" MaxLength="16" />
 
-        <!-- Button to Simulate QR Code Scanning -->
+        <!-- QR Code Scanner Button -->
         <Button Text="Scan QR Code" Clicked="OnScanQRCode" />
 
-        <!-- ListView to Display Scanned IDs -->
-        <ListView x:Name="IdListView" HeightRequest="150">
+        <!-- List of Scanned IDs -->
+        <ListView x:Name="IdListView">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding}" />
@@ -19,20 +19,19 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!-- Horizontal Buttons for Actions -->
-        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-            <Button Text="Clear" Clicked="OnClear" HorizontalOptions="FillAndExpand" />
-            <Button Text="Delete" Clicked="OnDelete" HorizontalOptions="FillAndExpand" />
-        </StackLayout>
-
         <!-- Action Buttons -->
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-            <Button Text="Submit" Clicked="OnSubmit" HorizontalOptions="FillAndExpand" />
-            <Button Text="Reload" Clicked="OnReload" HorizontalOptions="FillAndExpand" />
-            <Button Text="Next" Clicked="OnNext" HorizontalOptions="FillAndExpand" />
+            <Button Text="Clear" Clicked="OnClear" />
+            <Button Text="Delete" Clicked="OnDelete" />
         </StackLayout>
 
-        <!-- Label for Count -->
-        <Label x:Name="CountLabel" Text="Count: 0" HorizontalOptions="Center" FontSize="Medium" />
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Button Text="Submit" Clicked="OnSubmit" />
+            <Button Text="Reload" Clicked="OnReload" />
+            <Button Text="Next" Clicked="OnNext" />
+        </StackLayout>
+
+        <!-- Count Label -->
+        <Label x:Name="CountLabel" Text="Count: 0" HorizontalOptions="Center" />
     </StackLayout>
 </ContentPage>

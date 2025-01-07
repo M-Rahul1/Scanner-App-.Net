@@ -1,16 +1,19 @@
 ﻿using System;
-using System.ComponentModel;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace App1.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1 : ContentPage
+    public partial class DetailsPage : ContentPage
     {
-        public Page1()
+        public DetailsPage()
         {
             InitializeComponent();
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            DetailsListView.ItemsSource = await App.Database.GetIdsAsync();
         }
     }
 }
